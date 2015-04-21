@@ -1,0 +1,26 @@
+@import "../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+
+
+body {
+    padding-bottom: 100px;
+}
+
+.media-left {
+    padding-right: 20px;
+}
+
+.comment-buttons {
+    margin-bottom: 10px;
+
+    & > a {
+        margin-left: 15px;
+
+        & > span {
+            margin-left: 5px;
+        }
+    }
+}
+
+textarea {
+    resize: none;
+}
