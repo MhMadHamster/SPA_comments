@@ -2,7 +2,7 @@ $(document).ready(function() {
 
     var commentForm = $('.js-comment-form');
 
-    $('.js-reply').on('click', function(e) {
+    $('.media-list').on('click', '.js-reply', function(e) {
 
         var replyTo = $(this).closest('.comment-buttons');
 
@@ -15,7 +15,7 @@ $(document).ready(function() {
             });
         });
 
-    })
+    });
 
     $('.js-main-comment').click(function(e) {
 
@@ -30,6 +30,53 @@ $(document).ready(function() {
             });
         });
 
-    })
+    });
+
+
+    // Submit Form
+    $('#comment-form').submit(function(e) {
+
+        e.preventDefault();
+
+        var author = this.commentAuthor.value,
+            comment = this.commentText.value;
+
+        this.commentAuthor.value = '';
+        this.commentText.value = '';
+
+        if (author === '') {
+            author = 'Anonymous';
+        };
+
+        if ($(this).closest('.media').length === 0) {
+            $(this).closest('.js-article').find('.media-list').append('<li class="media">' +
+                                                                        '<div class="media-body">' +
+                                                                            '<h4>' + author + '</h4>' +
+                                                                            '<p>' + comment + '</p>' +
+                                                                            '<div class="comment-buttons">' +
+                                                                                '<a href="" class="js-reply">Reply <span class="glyphicon glyphicon-retweet" aria-hidden="true"></span></a>' +
+                                                                                '<a href="" class="js-remove">Remove<span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></a>' +
+                                                                            '</div>' +
+                                                                        '</div>' +
+                                                                       '</li>');
+        } else {
+            $(this).closest('.media-body').append('<li class="media">' +
+                                                    '<div class="media-left"></div>' +
+                                                    '<div class="media-body">' +
+                                                        '<h4>' + author + '</h4>' +
+                                                        '<p>' + comment + '</p>' +
+                                                        '<div class="comment-buttons">' +
+                                                            '<a href="" class="js-reply">Reply <span class="glyphicon glyphicon-retweet" aria-hidden="true"></span></a>' +
+                                                            '<a href="" class="js-remove">Remove<span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></a>' +
+                                                        '</div>' +
+                                                    '</div>' +
+                                                 '</li>');
+        };
+
+        $(this).closest('.js-comment-form').slideUp(300);
+
+        console.log(author + ' ' + comment);
+
+    });
 
 });
