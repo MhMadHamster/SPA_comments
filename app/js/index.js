@@ -44,7 +44,7 @@ $(document).ready(function() {
             commentForm.hide();
             $('.js-article').append(commentForm);
         };
-        
+
         commentToRemove.slideUp(300, function() {
             $(this).remove();
         });
@@ -93,8 +93,6 @@ $(document).ready(function() {
         };
 
         $(this).closest('.js-comment-form').slideUp(300);
-
-        console.log(author + ' ' + comment);
 
     });
 
