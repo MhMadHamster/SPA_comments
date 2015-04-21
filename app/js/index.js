@@ -33,6 +33,25 @@ $(document).ready(function() {
     });
 
 
+    // Remove
+    $('.media-list').on('click', '.js-remove', function(e) {
+
+        e.preventDefault();
+
+        var commentToRemove = $(this).closest('.media');
+
+        if(commentToRemove.find(commentForm).length !== 0) {
+            commentForm.hide();
+            $('.js-article').append(commentForm);
+        };
+        
+        commentToRemove.slideUp(300, function() {
+            $(this).remove();
+        });
+
+    });
+
+
     // Submit Form
     $('#comment-form').submit(function(e) {
 
@@ -51,7 +70,7 @@ $(document).ready(function() {
         if ($(this).closest('.media').length === 0) {
             $(this).closest('.js-article').find('.media-list').append('<li class="media">' +
                                                                         '<div class="media-body">' +
-                                                                            '<h4>' + author + '</h4>' +
+                                                                            '<h4 class="media-heading">' + author + '</h4>' +
                                                                             '<p>' + comment + '</p>' +
                                                                             '<div class="comment-buttons">' +
                                                                                 '<a href="" class="js-reply">Reply <span class="glyphicon glyphicon-retweet" aria-hidden="true"></span></a>' +
@@ -63,7 +82,7 @@ $(document).ready(function() {
             $(this).closest('.media-body').append('<li class="media">' +
                                                     '<div class="media-left"></div>' +
                                                     '<div class="media-body">' +
-                                                        '<h4>' + author + '</h4>' +
+                                                        '<h4 class="media-heading">' + author + '</h4>' +
                                                         '<p>' + comment + '</p>' +
                                                         '<div class="comment-buttons">' +
                                                             '<a href="" class="js-reply">Reply <span class="glyphicon glyphicon-retweet" aria-hidden="true"></span></a>' +
